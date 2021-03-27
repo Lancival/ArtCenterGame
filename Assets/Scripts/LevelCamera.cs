@@ -24,7 +24,6 @@ public class LevelCamera : MonoBehaviour
         players = GameObject.FindObjectsOfType<Player>();
         cam.orthographicSize = 2;
         activeplayer = players[0];
-        activeplayer.isActive = true;
     }
 
     private void LateUpdate()
@@ -37,6 +36,7 @@ public class LevelCamera : MonoBehaviour
                 cam.orthographicSize = camStartSize;
                 reachedStartSize = true;
                 camVelocity = 0;
+                activeplayer.isActive = true;
             }
 
             return;
