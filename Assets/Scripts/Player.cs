@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Player otherPlayer;
 
+    public bool isGrounded()
+    {
+        return controller.m_Grounded;
+    }
+    
     private void Start()
     {
         //find the other player
@@ -61,6 +66,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isActive)
+        {
+            controller.InactiveMove(rot);
+            return;
+        }
+
         controller.Move(horizontalMove * Time.deltaTime*2, jump,rot);
         //Debug.Log(horizontalMove * Time.deltaTime+"; "+ crouch+"; "+ jump);
         jump = false;

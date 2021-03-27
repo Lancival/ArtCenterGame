@@ -42,7 +42,7 @@ public class LevelCamera : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && activeplayer.isGrounded())
         {
             foreach (Player p in players)
             {

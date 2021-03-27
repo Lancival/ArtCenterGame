@@ -13,7 +13,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 
 	const float k_GroundedRadius = .5f; // Radius of the overlap circle to determine if grounded
-	[SerializeField] private bool m_Grounded;            // Whether or not the player is grounded.
+	[SerializeField] public bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	[SerializeField] private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -46,6 +46,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			if (colliders[i].gameObject != gameObject)
 			{
+				colliders[i].ClosestPoint(transform.position);
 				m_Grounded = true;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
@@ -90,6 +91,13 @@ public class CharacterController2D : MonoBehaviour
 		//debug.Log("gravity force:"+Mathf.Cos(rot)+";"+Mathf.Sin(rot));
 
 		m_Rigidbody2D.AddForce(new Vector2(Mathf.Cos(rot),Mathf.Sin(rot))*9.81f, ForceMode2D.Force);
+	}
+	
+	public void InactiveMove(float rot)
+	{
+		m_Rigidbody2D.velocity = Vector2.zero;
+
+		//m_Rigidbody2D.AddForce(new Vector2(Mathf.Cos(rot),Mathf.Sin(rot))*9.81f, ForceMode2D.Force);
 	}
 
 
