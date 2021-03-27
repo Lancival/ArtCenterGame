@@ -17,7 +17,7 @@ public class CharacterController2D : MonoBehaviour
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	[SerializeField] private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	[SerializeField] private Vector3 m_Velocity = Vector3.zero;
+	[SerializeField] private Vector2 m_Velocity = Vector2.zero;
 
 	[Header("Events")]
 	[Space]
@@ -30,7 +30,6 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 	}
@@ -55,17 +54,16 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool jump)
+	public void Move(float move, bool jump, float rot)
 	{
-
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
 		{
-			Debug.Log("Made it here! "+move * 10f+"; "+ m_Rigidbody2D.velocity.y);
+			//Debug.Log("Made it here! "+move * 10f+"; "+ m_Rigidbody2D.velocity.y);
 			// Move the character by finding the target velocity
-			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+			Vector2 targetVelocity = m_Rigidbody2D.velocity + new Vector2(move * 10f, 0).Rotate(rot-Mathf.PI/2);
 			// And then smoothing it out and applying it to the character
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			m_Rigidbody2D.velocity = Vector2.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
@@ -85,8 +83,13 @@ public class CharacterController2D : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			Vector2 jumpvec = new Vector2(0f, m_JumpForce).Rotate(rot-Mathf.PI/2);
+			Debug.Log("Jumping! "+jumpvec.x+"; "+jumpvec.y );
+			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce).Rotate(rot+Mathf.PI/2));
 		}
+		Debug.Log("gravity force:"+Mathf.Cos(rot)+";"+Mathf.Sin(rot));
+
+		m_Rigidbody2D.AddForce(new Vector2(Mathf.Cos(rot),Mathf.Sin(rot))*9.81f, ForceMode2D.Force);
 	}
 
 
@@ -99,5 +102,19 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+}
+
+public static class Vector2Extension {
+     
+	public static Vector2 Rotate(this Vector2 v, float rads) {
+		float sin = Mathf.Sin(rads);
+		float cos = Mathf.Cos(rads);
+         
+		float tx = v.x;
+		float ty = v.y;
+		v.x = (cos * tx) - (sin * ty);
+		v.y = (sin * tx) + (cos * ty);
+		return v;
 	}
 }
