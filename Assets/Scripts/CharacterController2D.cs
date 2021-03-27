@@ -8,7 +8,13 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
+	
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
+	[SerializeField] private LayerMask m_WhatIsDeadly;							// A mask determining what is ground to the character
+	[SerializeField] private LayerMask m_WhatIsPlayer;							// A mask determining what is ground to the character
+	[SerializeField] private LayerMask m_WhatIsLever;							// A mask determining what is ground to the character
+
+	
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 
@@ -18,20 +24,10 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	[SerializeField] private Vector2 m_Velocity = Vector2.zero;
-
-	[Header("Events")]
-	[Space]
-
-	public UnityEvent OnLandEvent;
-
-	[System.Serializable]
-	public class BoolEvent : UnityEvent<bool> { }
 	
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		if (OnLandEvent == null)
-			OnLandEvent = new UnityEvent();
 	}
 
 	private void FixedUpdate()
@@ -48,10 +44,38 @@ public class CharacterController2D : MonoBehaviour
 			{
 				colliders[i].ClosestPoint(transform.position);
 				m_Grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
 			}
 		}
+		colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsDeadly);
+		for (int i = 0; i < colliders.Length; i++)
+		{
+			if (colliders[i].gameObject != gameObject)
+			{
+				Debug.Log("player has died! Restart the scene!");
+				//code to reload scene
+			}
+		}
+		
+		colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsPlayer);
+		for (int i = 0; i < colliders.Length; i++)
+		{
+			if (colliders[i].gameObject != gameObject)
+			{
+				Debug.Log("Players have rejoined! Next scene please!");
+				//code to go to next scene/shmup
+			}
+		}
+		
+		colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsLever);
+		for (int i = 0; i < colliders.Length; i++)
+		{
+			if (colliders[i].gameObject != gameObject)
+			{
+				Debug.Log("Player has touched a lever, do something with a door now");
+				//code to open a door or something
+			}
+		}
+		
 	}
 
 
