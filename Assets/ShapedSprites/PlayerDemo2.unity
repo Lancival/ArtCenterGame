@@ -409,6 +409,10 @@ PrefabInstance:
       propertyPath: flipAngle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7796961902779274754, guid: caa2edbfca043514b94ccb568fb58ae8, type: 3}
+      propertyPath: printDebug
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7796961902779274755, guid: caa2edbfca043514b94ccb568fb58ae8, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -804,8 +808,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9ff505de569f94a85735c3404ecb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camStartSize: 5
+  camStartSize: 10
   camStartTime: 1
+  reachedStartSize: 0
   activeplayer: {fileID: 0}
   players: []
 --- !u!1001 &1731501417
@@ -861,7 +866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7796961902779274754, guid: caa2edbfca043514b94ccb568fb58ae8, type: 3}
       propertyPath: flipAngle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7796961902779274755, guid: caa2edbfca043514b94ccb568fb58ae8, type: 3}
       propertyPath: m_Name
