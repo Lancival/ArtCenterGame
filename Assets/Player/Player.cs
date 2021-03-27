@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public bool printDebug = false;
     public float rot = 0;
     
     public CharacterController2D controller;
@@ -41,9 +42,16 @@ public class Player : MonoBehaviour
             jump = true;
         }
         //Debug.Log("positive: "+Vector3.Angle());
-        Debug.Log(Vector3.Angle(-transform.position+otherPlayer.transform.position,Vector2.right));
-        rot = Vector3.Angle(-transform.position+otherPlayer.transform.position,Vector2.right) * Mathf.Deg2Rad * ((flipAngle)?1:-1);
-
+        //Debug.Log(Vector3.Angle(-transform.position+otherPlayer.transform.position,Vector2.right));
+        float flip = Mathf.Sign(-transform.position.y + otherPlayer.transform.position.y);
+        rot = (Vector3.Angle(otherPlayer.transform.position - transform.position, Vector3.right))* Mathf.Deg2Rad * flip;
+        //rot = (Vector3.Angle(-transform.position+otherPlayer.transform.position,transform.up)-adjustangle) * Mathf.Deg2Rad * ((flipAngle)?1:-1);
+        Debug.DrawLine(transform.position,transform.position+new Vector3(Mathf.Cos(rot),Mathf.Sin(rot),0));
+        if (printDebug)
+        {
+            Debug.Log(rot);
+        }
+        
         transform.eulerAngles = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y,90+rot*Mathf.Rad2Deg);
     }
 
