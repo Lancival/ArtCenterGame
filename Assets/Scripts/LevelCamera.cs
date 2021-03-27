@@ -27,7 +27,7 @@ public class LevelCamera : MonoBehaviour
         activeplayer.isActive = true;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (!reachedStartSize)
         {
@@ -60,15 +60,19 @@ public class LevelCamera : MonoBehaviour
         targetPoint = (players[0].transform.position + players[1].transform.position) / 2f;
         
         //smooth damp both rotation and position
-        transform.position = Vector3.SmoothDamp(transform.position, targetPoint, ref moveVelocity, .5f,500,Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPoint, ref moveVelocity, .35f,500,Time.deltaTime);
         //smooth damp rotation
         float tempRot = transform.eulerAngles.z;
-        tempRot = Mathf.SmoothDamp(tempRot,activeplayer.transform.eulerAngles.z,ref rotatevelocity,.5f,500,Time.deltaTime);
+        float toRot = activeplayer.transform.eulerAngles.z;
+        if (tempRot - toRot > 180) toRot += 360;
+        if (tempRot - toRot < -180) toRot -= 360;
+
+            tempRot = Mathf.SmoothDamp(tempRot,toRot,ref rotatevelocity,.35f,500,Time.deltaTime);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, tempRot);
         
         //smooth damp size
-        float newCamSize = Vector3.Magnitude(players[0].transform.position - players[1].transform.position) * .74f;
-        cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, newCamSize, ref camVelocity, .5f,500,Time.deltaTime);
+        float newCamSize = Vector3.Magnitude(players[0].transform.position - players[1].transform.position) * .5f+5;
+        cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, newCamSize, ref camVelocity, .35f,500,Time.deltaTime);
 
         transform.position = new Vector3(transform.position.x, transform.position.y, -10);
     }

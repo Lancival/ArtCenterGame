@@ -61,7 +61,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			//Debug.Log("Made it here! "+move * 10f+"; "+ m_Rigidbody2D.velocity.y);
 			// Move the character by finding the target velocity
-			Vector2 targetVelocity = m_Rigidbody2D.velocity + new Vector2(move * 10f, 0).Rotate(rot+Mathf.PI/2);
+			Vector2 targetVelocity = m_Rigidbody2D.velocity + new Vector2(move * 20f, 0).Rotate(rot+Mathf.PI/2);
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector2.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
@@ -83,7 +83,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			Vector2 jumpvec = new Vector2(0f, m_JumpForce).Rotate(rot-Mathf.PI/2);
+			//Vector2 jumpvec = new Vector2(0f, m_JumpForce).Rotate(rot-Mathf.PI/2);
 			//debug.Log("Jumping! "+jumpvec.x+"; "+jumpvec.y );
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce).Rotate(rot+Mathf.PI/2));
 		}

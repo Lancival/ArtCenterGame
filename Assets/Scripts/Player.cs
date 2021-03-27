@@ -44,6 +44,12 @@ public class Player : MonoBehaviour
                 jump = true;
             }
         }
+        else
+        {
+            horizontalMove = 0;
+            jump = false;
+        }
+
         //for some reason angle doesn't like to play nice and do negative values
         //this line makes negative values for us
         float flip = Mathf.Sign(-transform.position.y + otherPlayer.transform.position.y);
