@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public bool printDebug = false;
+    public bool isActive = false;
+    
     public float rot = 0;
     
     public CharacterController2D controller;
 
     public float runspeed = 40f;
 
-    private float horizontalMove = 10f;
+    private float horizontalMove = 0f;
     private bool jump = false;
-    public bool flipAngle = false;
 
     [SerializeField] private Player otherPlayer;
 
@@ -35,22 +35,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetButtonDown("Jump"))
+        if (isActive)
         {
-            jump = true;
+            horizontalMove = Input.GetAxisRaw("Horizontal");
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+            }
         }
-        //Debug.Log("positive: "+Vector3.Angle());
-        //Debug.Log(Vector3.Angle(-transform.position+otherPlayer.transform.position,Vector2.right));
+        //for some reason angle doesn't like to play nice and do negative values
+        //this line makes negative values for us
         float flip = Mathf.Sign(-transform.position.y + otherPlayer.transform.position.y);
         rot = (Vector3.Angle(otherPlayer.transform.position - transform.position, Vector3.right))* Mathf.Deg2Rad * flip;
-        //rot = (Vector3.Angle(-transform.position+otherPlayer.transform.position,transform.up)-adjustangle) * Mathf.Deg2Rad * ((flipAngle)?1:-1);
-        Debug.DrawLine(transform.position,transform.position+new Vector3(Mathf.Cos(rot),Mathf.Sin(rot),0));
-        if (printDebug)
-        {
-            Debug.Log(rot);
-        }
+        //Debug.DrawLine(transform.position,transform.position+new Vector3(Mathf.Cos(rot),Mathf.Sin(rot),0));
         
         transform.eulerAngles = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y,90+rot*Mathf.Rad2Deg);
     }
