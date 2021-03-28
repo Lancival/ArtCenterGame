@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 408414136}
   - component: {fileID: 408414135}
   - component: {fileID: 408414139}
+  - component: {fileID: 408414140}
   m_Layer: 5
   m_Name: Transition Canvas
   m_TagString: Untagged
@@ -343,6 +344,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sl: {fileID: 958285221}
+--- !u!114 &408414140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408414134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c58e6e3f24de42118ee7c31acb902bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &673675053
 GameObject:
   m_ObjectHideFlags: 0
