@@ -34,6 +34,13 @@ public class BulletScript : MonoBehaviour
 
                 Destroy(gameObject);
             }
+
+            else if(col.gameObject.tag == "Boundary")
+            {
+                Destroy(gameObject);
+            }
+                
+                       
         }
 
         else
