@@ -19,6 +19,8 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	[SerializeField] private Vector2 m_Velocity = Vector2.zero;
 
+	public bool center = false;
+
 	[Header("Events")]
 	[Space]
 
@@ -52,6 +54,12 @@ public class CharacterController2D : MonoBehaviour
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
+
+			if (colliders[i].gameObject.name == "platformTile")
+			{
+				center = true;
+			}
+
 		}
 	}
 
