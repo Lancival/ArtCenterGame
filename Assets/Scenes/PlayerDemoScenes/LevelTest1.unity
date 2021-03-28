@@ -882,6 +882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 7796961902779274813, guid: caa2edbfca043514b94ccb568fb58ae8, type: 3}
+      propertyPath: m_WhatIsGround.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7796961903040322232, guid: caa2edbfca043514b94ccb568fb58ae8, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1383,7 +1387,7 @@ GameObject:
   - component: {fileID: 1614430716}
   - component: {fileID: 1614430715}
   - component: {fileID: 1614430717}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Maze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
