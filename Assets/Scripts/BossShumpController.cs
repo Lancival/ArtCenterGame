@@ -9,7 +9,7 @@ public class BossShumpController : MonoBehaviour
     public  float xspeed;
     public float yspeed;
     float fireRate;
-    float health;
+    public float health;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class BossShumpController : MonoBehaviour
         }
     }
 
-    void Damage()
+    public void Damage()
     {
         health--; 
            if(health == 0)
