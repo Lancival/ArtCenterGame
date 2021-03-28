@@ -318,6 +318,7 @@ PrefabInstance:
     - target: {fileID: 7113322017271274198, guid: 162392b9c7df0e942952c3974838df57, type: 3}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       propertyPath: m_LocalScale.x
       value: 0.22718006
       objectReference: {fileID: 0}
@@ -335,6 +336,8 @@ PrefabInstance:
 =======
 =======
 >>>>>>> parent of 83d87b2 (Push Push Lady Lightning)
+=======
+>>>>>>> parent of 83d87b2 (Push Push Lady Lightning)
       propertyPath: m_LocalPosition.x
       value: 0.3048236
       objectReference: {fileID: 0}
@@ -342,6 +345,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.1671605
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 83d87b2 (Push Push Lady Lightning)
+=======
 >>>>>>> parent of 83d87b2 (Push Push Lady Lightning)
 =======
 >>>>>>> parent of 83d87b2 (Push Push Lady Lightning)
@@ -480,9 +486,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalPosition: {x: 0.54, y: 2.48, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.73757}
 =======
+=======
+>>>>>>> parent of 83d87b2 (Push Push Lady Lightning)
 =======
 >>>>>>> parent of 83d87b2 (Push Push Lady Lightning)
   m_LocalPosition: {x: 0.43, y: 1.99, z: 0}
