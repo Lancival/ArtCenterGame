@@ -10,32 +10,39 @@ public class BossShumpController : MonoBehaviour
     public float yspeed;
     public float fireRate;
     public float health;
+    public int delay = 0;
 
     public GameObject BossBullet;
-    GameObject BossBulletOrigin;
+    GameObject BulletOrigin;
 
     private void Awake()
     {
-        rb = transform.GetComponent<Rigidbody2D>();
-        BossBulletOrigin = transform.GetChild(0).gameObject;
+        rb = GetComponent<Rigidbody2D>();
+        BulletOrigin = transform.Find("BulletOrigin").gameObject;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //fireRate = fireRate + (Random.Range(fireRate / -2, fireRate / 2));
+        fireRate = fireRate + (Random.Range(fireRate / -2, fireRate / 2));
         InvokeRepeating("Shoot", fireRate, fireRate);
+        rb.velocity = new Vector2(xspeed * Random.Range(-10, 10), yspeed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(xspeed * Random.Range(-20,20), yspeed);
+        if (delay > 140)
+        {
+            rb.velocity = new Vector2(xspeed * Random.Range(-10, 10), yspeed);
+            delay = 0;
+        }
+        delay++;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerShumpController>().Damage();
         }

@@ -35,22 +35,24 @@ public class BulletScript : MonoBehaviour
                 Destroy(gameObject);
             }
 
-            else if(col.gameObject.tag == "Boundary")
-            {
-                Destroy(gameObject);
-            }
-                
-                       
-        }
-
-        else
-        {
             if (col.gameObject.tag == "Player")
             {
                 col.gameObject.GetComponent<PlayerShumpController>().Damage();
 
                 Destroy(gameObject);
             }
+
+       
+        }
+
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Boundary")
+        {
+            Destroy(gameObject);
         }
     }
 
