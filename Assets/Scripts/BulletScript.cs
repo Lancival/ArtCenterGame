@@ -26,13 +26,25 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "enemy")
+        if (dir == 1)
         {
-            col.gameObject.GetComponent<BossShumpController>().Damage();
+            if (col.gameObject.tag == "enemy")
+            {
+                col.gameObject.GetComponent<BossShumpController>().Damage();
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
-       
+
+        else
+        {
+            if (col.gameObject.tag == "Player")
+            {
+                col.gameObject.GetComponent<PlayerShumpController>().Damage();
+
+                Destroy(gameObject);
+            }
+        }
     }
 
 }
