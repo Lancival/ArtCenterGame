@@ -11,7 +11,7 @@ public class PlayerShumpController : MonoBehaviour
     GameObject BulletOrigin;
     int delay = 0;
 
-    int health = 3;
+    public int health = 3;
     // Start is called before the first frame update
 
     private void Awake()
