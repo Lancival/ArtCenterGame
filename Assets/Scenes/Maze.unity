@@ -1349,6 +1349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition
       objectReference: {fileID: 0}
+    - target: {fileID: 5113007127734037689, guid: 419a49d349faa4d688c31d96f35a2a15, type: 3}
+      propertyPath: nextScene
+      value: ZeusFight
+      objectReference: {fileID: 0}
     - target: {fileID: 5113007127734037692, guid: 419a49d349faa4d688c31d96f35a2a15, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
