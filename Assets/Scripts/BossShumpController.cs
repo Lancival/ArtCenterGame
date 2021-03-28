@@ -15,6 +15,8 @@ public class BossShumpController : MonoBehaviour
     public GameObject BossBullet;
     GameObject BulletOrigin;
 
+    [SerializeField] private SceneLoader sl;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,6 +62,7 @@ public class BossShumpController : MonoBehaviour
         health--; 
            if(health == 0)
         {
+            sl.LoadNextScene();
             Destroy(gameObject);
         }
     }

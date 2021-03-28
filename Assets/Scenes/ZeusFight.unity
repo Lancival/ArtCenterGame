@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &435648671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5113007127734037689, guid: 419a49d349faa4d688c31d96f35a2a15, type: 3}
+  m_PrefabInstance: {fileID: 2074156304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00e63ee18bad40c5972c0c0d95c31a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &539487247
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +319,7 @@ MonoBehaviour:
   health: 5
   delay: 0
   BossBullet: {fileID: 8696233103234329970, guid: f9081d56dd065594196ffa113cdb867d, type: 3}
+  sl: {fileID: 435648671}
 --- !u!212 &1208265145
 SpriteRenderer:
   m_ObjectHideFlags: 0
