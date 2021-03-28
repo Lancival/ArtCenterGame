@@ -369,9 +369,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xspeed: 5
   yspeed: 0
-  fireRate: 10
+  fireRate: 1
   health: 25
-  BossBullet: {fileID: 7831760308792650, guid: f9081d56dd065594196ffa113cdb867d, type: 3}
+  BossBullet: {fileID: 8696233103234329970, guid: f9081d56dd065594196ffa113cdb867d, type: 3}
 --- !u!212 &1208265145
 SpriteRenderer:
   m_ObjectHideFlags: 0
