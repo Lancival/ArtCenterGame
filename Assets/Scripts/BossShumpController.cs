@@ -34,7 +34,7 @@ public class BossShumpController : MonoBehaviour
     {
         if (delay > 140)
         {
-            rb.velocity = new Vector2(xspeed * Random.Range(-10, 10), yspeed);
+            rb.velocity = new Vector2(xspeed * Random.Range(-3, 3), yspeed);
             delay = 0;
         }
         delay++;
@@ -50,6 +50,8 @@ public class BossShumpController : MonoBehaviour
         else if(collision.gameObject.tag == "Boundary")
         {
             xspeed *= -1;
+            Debug.Log("flipping");
+            delay = 150; 
         }
     }
 
