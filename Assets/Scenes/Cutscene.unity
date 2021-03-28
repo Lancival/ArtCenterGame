@@ -565,7 +565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5113007127734037689, guid: 419a49d349faa4d688c31d96f35a2a15, type: 3}
       propertyPath: nextScene
-      value: Title
+      value: Maze
       objectReference: {fileID: 0}
     - target: {fileID: 5113007127734037692, guid: 419a49d349faa4d688c31d96f35a2a15, type: 3}
       propertyPath: m_Pivot.x
