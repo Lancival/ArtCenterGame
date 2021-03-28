@@ -15,7 +15,10 @@ public class VoiceOverController : MonoBehaviour
 
     void Update()
     {
-		if (Time.time - startTime > 15.5f) 
+		if (Time.time - startTime > 15.5f)
+        {
 			sl.LoadNextScene();
+            Destroy(this);
+        }
     }
 }
