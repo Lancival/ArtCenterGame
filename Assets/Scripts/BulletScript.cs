@@ -34,18 +34,14 @@ public class BulletScript : MonoBehaviour
 
                 Destroy(gameObject);
             }
-
-            if (col.gameObject.tag == "Player")
-            {
-                col.gameObject.GetComponent<PlayerShumpController>().Damage();
-
-                Destroy(gameObject);
-            }
-
-       
         }
 
-        
+        if (dir == -1 && col.gameObject.tag == "Player")
+        {
+            col.gameObject.GetComponent<PlayerShumpController>().Damage();
+
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D col)
