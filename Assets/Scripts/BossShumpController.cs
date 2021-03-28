@@ -21,6 +21,7 @@ public class BossShumpController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fireRate = fireRate + (Random.Range(fireRate / -2, fireRate / 2));
         InvokeRepeating("Shoot", fireRate, fireRate);
     }
 
