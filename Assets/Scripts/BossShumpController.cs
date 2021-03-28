@@ -11,6 +11,8 @@ public class BossShumpController : MonoBehaviour
     float fireRate;
     public float health;
 
+    public GameObject BossBullet;
+
     private void Awake()
     {
         rb.GetComponent<Rigidbody2D>();
@@ -19,7 +21,7 @@ public class BossShumpController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("Shoot", fireRate, fireRate);
     }
 
     // Update is called once per frame
@@ -45,4 +47,9 @@ public class BossShumpController : MonoBehaviour
         }
     }
 
+    void Shoot()
+    {
+        GameObject temp = (GameObject)Instantiate(BossBullet, transform.position, Quaternion.identity);
+        temp.GetComponent<BulletScript>().ChangeDirection();
+    }
 }
