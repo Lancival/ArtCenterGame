@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public static class Audio
 {
 	// Converts volume (0 to 1) to decibels
-	private static float VolumeToDecibels(float volume)
+	public static float VolumeToDecibels(float volume)
 	{
 		return Mathf.Log10(Mathf.Clamp(volume, 0.00001f, 1)) * 20;
 	}
